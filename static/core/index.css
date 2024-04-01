@@ -1,5 +1,5 @@
 .gray-container{
-    /* border: 2px solid black; */
+    border: 2px solid black;
     width: 95%;
     margin: auto;
     padding: 20px;
@@ -22,14 +22,20 @@
 }
 /* i will use container 2 for the browse page  */
 .container2{
-    grid-template-columns: repeat(3, 30%);
+    border: 2px solid greenyellow;
+    /* grid-template-columns: repeat(3, 30%); */
+    
+    grid-template-columns: repeat(5, 19.2%);
+    column-gap: 1%;
+    row-gap: 2%;
 }
 .each-item{
     /* border: 2px solid red; */
     padding: 10px;
     margin: auto;
-    height: 300px;
-    width: 300px;
+    /* height: 300px; */
+    height: 250px;
+    /* width: 300px; */
     border-radius: 10px;
     overflow: hidden;
     background-color: var(--white);
@@ -42,14 +48,17 @@
 }
 .item-desc{
     /* border: 2px solid rgb(30, 255, 0); */
-    padding: 5px;
+    /* padding: 5px; */
     height: 20%;
     overflow: hidden;
 }
 .item-image img{
     /* height: 100%; */
-    /* width: 100%; */
+    width: 100%;
     /* object-fit: cover; */
+    /* height: 100%; */
+    /* width: 100%; */
+    object-fit: cover;
 }
 .category{
     height: auto;

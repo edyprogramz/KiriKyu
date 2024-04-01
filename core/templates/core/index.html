@@ -5,42 +5,97 @@
 {% block content %}
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'core/index.css' %}">
+    <link rel="stylesheet" href="{% static 'core/indexx.css' %}">
 </head>
-{% comment %} <h1 class="headers">Home Page</h1> {% endcomment %}
-<div class="gray-container">
-    <h2 class="header-two container-title">Newest Items</h2>
-    <div class="container container2">
-        {% for item in items %}
-            <a href="{% url 'item:detail' item.id %}" class="links item-link">
-                <div class="each-item item-hover">
-                    <div class="item-image">
-                        <img src="{{item.image.url}}" alt="img"/>
-                    </div>
-                    <div class="item-desc">
-                        <h3>{{item.name}}</h3>
-                        <p><strong>Price:</strong>${{item.price}}</p>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
+
+<!-- body  -->
+<div id="body">
+    <div id="slider-category-section">
+        <!-- categories -->
+        <div id="categories" class="main-div">
+            <h1 class="section-title">CATEGORIES</h1>
+            {% for category in categories %}
+
+                <div class="category">{{category.name}}</div>
+
+            {% endfor %}
+        </div>
+        <!-- slider -->
+        <div id="slider-container">
+            <div class="slider">
+            <div class="slide"><img src="pixel.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="pixel.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="pixel.jpg" alt="Image 3"></div>
+            <div class="slide"><img src="pixel.jpg" alt="Image 4"></div>
+            <div class="slide"><img src="pixel.jpg" alt="Image 5"></div>
+            <div class="slide"><img src="pixel.jpg" alt="Image 5"></div>
+            </div>
+            <div id="controls">
+                <button class="control-btn prev" onclick="prevSlide()"> < </button>
+                <button class="control-btn next" onclick="nextSlide()"> > </button>
+        </div>
+        </div>
     </div>
-</div>
-{% comment %} categories {% endcomment %}
-<div class="gray-container">
-    <h2 class="header-two container-title">Categories</h2>
-    <div class="container">
-        {% for category in categories %}
-            <a href="#" class="links item-link">
-                <div class="each-item category">
-                    <div class="item-desc">
-                        <h3>{{category.name}}</h3>
-                        <p>{{category.items.count}} items</p>
+
+    <!-- hot category  -->
+    <div id="you-may-like-section">
+        <h1 class="section-title">Hot Categories</h1>
+        <div class="products cats">
+            {% for category in categories %}
+                {% if category.id == category_id %} active-category {% endif %}
+                <a href="{% url 'item:items' %}?query={{query}}&category={{category.id}}" class="product-card cat-card">
+                    <div class="image">
+                        <img src="#" alt="img">
                     </div>
-                </div>
-            </a>
-        {% endfor %}
+                    <div class="image-details">
+                        <span>{{category.name}}</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     </div>
-</div>
+
+
+        
+    <!-- latest  -->
+    <div id="you-may-like-section">
+        <div id="latest-section-header">
+            <h1 class="section-title">Latest</h1>
+            <a href="{% url 'item:items' %}">View More</a>
+        </div>
+        <div class="products">
+            {% for item in items %}
+                <a href="{% url 'item:detail' item.id %}" class="product-card">
+                    <div class="image">
+                        <img src="{{item.image.url}}" alt="img">
+                    </div>
+                    <div class="image-details">
+                        <h1>{{item.name}}</h1>
+                        <p>{{item.price}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+        
+
+    <!-- card  -->
+    <div id="you-may-like-section">
+        <h1 class="section-title">YOU MAY LIKE</h1>
+        <div class="products">
+            {% for item in items %}
+                <a href="{% url 'item:detail' item.id %}" class="product-card">
+                    <div class="image">
+                        <img src="{{item.image.url}}" alt="img">
+                    </div>
+                    <div class="image-details">
+                        <h1>{{item.name}}</h1>
+                        <p>{{item.price}}</p>
+                    </div>
+                </a>
+            {% endfor %}        
+        </div>
+    </div>
 
 {% endblock content %}
