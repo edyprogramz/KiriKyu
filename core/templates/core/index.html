@@ -5,35 +5,60 @@
 {% block content %}
 <head>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'core/indexx.css' %}">
+    <link rel="stylesheet" href="{% static 'core/home-page.css' %}">
 </head>
+<style>
+    #slider-category-section{
+        padding: 20px;
+        overflow: hidden
+    }
+    #slider-container {
+        border: 2px solid black;
+        position: relative;
+        padding: 20px;
+        width: 100%;
+        height: 100%
+        overflow: hidden;
+    }
 
+    .slider {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .slide {
+        height: 100%;
+
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+</style>
 <!-- body  -->
 <div id="body">
     <div id="slider-category-section">
         <!-- categories -->
-        <div id="categories" class="main-div">
+        {% comment %} <div id="categories" class="main-div">
             <h1 class="section-title">CATEGORIES</h1>
             {% for category in categories %}
 
                 <div class="category">{{category.name}}</div>
 
             {% endfor %}
-        </div>
+        </div> {% endcomment %}
         <!-- slider -->
         <div id="slider-container">
             <div class="slider">
-            <div class="slide"><img src="pixel.jpg" alt="Image 1"></div>
-            <div class="slide"><img src="pixel.jpg" alt="Image 2"></div>
-            <div class="slide"><img src="pixel.jpg" alt="Image 3"></div>
-            <div class="slide"><img src="pixel.jpg" alt="Image 4"></div>
-            <div class="slide"><img src="pixel.jpg" alt="Image 5"></div>
-            <div class="slide"><img src="pixel.jpg" alt="Image 5"></div>
+            <div class="slide"><img src="https://ke.jumia.is/cms/2024/W4/cp/Sliders/KE_ElectricAvenue_Laptops_0124_S_rvsd.jpg" alt="Image 1"></div>
+            <div class="slide"><img src="https://ke.jumia.is/cms/2023/W15/HP/KE_Beauty_AB_0423_S.jpg" alt="Image 2"></div>
+            <div class="slide"><img src="https://ke.jumia.is/cms/2024/W4/cp/Sliders/KE_ElectricAvenue_Accessories_0124_S.jpg" alt="Image 3"></div>
+            <div class="slide"><img src="https://ke.jumia.is/cms/2024/W4/cp/Sliders/KE_ElectricAvenue_PhoneWeek_0124_S.jpg" alt="Image 4"></div>
+            <div class="slide"><img src="https://ke.jumia.is/cms/2024/W4/cp/Sliders/KE_ElectricAvenue_PhoneWeek_0124_S.jpg" alt="Image 5"></div>
+            <div class="slide"><img src="https://img.kilimall.com/c/public/banner-image/100001724.jpg?x-image-process=image/format,webp#" alt="Image 5"></div>
             </div>
-            <div id="controls">
-                <button class="control-btn prev" onclick="prevSlide()"> < </button>
-                <button class="control-btn next" onclick="nextSlide()"> > </button>
-        </div>
         </div>
     </div>
 
