@@ -2,7 +2,7 @@
 
 {% block title %}{{item.name}}{% endblock title %}
 
-{% block content %}
+{% block content %} 
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'item/detail.css' %}">
@@ -24,11 +24,15 @@
                 <a href="{% url 'item:delete' item.id %}" class="gray-btn links">Delete</a>
             {% else %}
                 <a href="{% url 'conversation:new' item.id %}" class="teal-btn links">Contact Seller</a> <br><br>
-                <form action="{% url 'cart:add_to_cart' item.id %}" method="post">
-                    {% csrf_token %}
-                    {% comment %} <input type="number" name="quantity" value="1" min="1"> {% endcomment %}
-                    <button type="submit" class="gray-btn links">Add To Cart</button>
-                </form>
+
+                {% if request.user.is_authenticated %}
+                    <form action="{% url 'cart:add_to_cart' item.id %}" method="post">
+                        {% csrf_token %}
+                        {% comment %} <input type="number" name="quantity" value="1" min="1"> {% endcomment %}
+                        <button type="submit" class="gray-btn links">Add To Cart</button>
+                    </form>
+                {% endif %}
+
             {% endif %} 
         </div>    
     </div>
