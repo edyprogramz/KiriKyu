@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="category_images", blank=True, null=True)
+
     
     class Meta:
         verbose_name_plural = "Categories"
@@ -22,6 +24,9 @@ class Item(models.Model):
     is_sold = models.BooleanField(default=False)
     created_by = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
+
+    cart = models.BooleanField(default=False)
+    quantity = models.IntegerField(default=1)
     
     def __str__(self):
         return self.name
