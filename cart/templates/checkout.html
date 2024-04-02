@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}CART{% endblock title %}
+
+{% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cart/checkout.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'cart/cart.css' %}"> {% endcomment %}
+</head>
+<div id="checkout-page">
+    <h2 class="header">Checkout Receipt</h2> 
+    <div id="payout">
+        <div id="checkout-payment-method"><strong>MPESA PAYMENT</strong></div>
+        <div id="checkout-payment-method"><strong>MERCHANT:</strong> {{item.created_by}}</div>
+        <div id="checkout-payment-number"><strong>PAY TO:</strong> 0707319730</div>
+        <div id="checkout-payment-amount"><strong>TOTAL:</strong>  Kshs. {{request.GET.total_amount}}</div>
+        <p class="item-quantity"><strong>QUANTITY YOU ARE BUYING:</strong> {{request.GET.quantity}}</p>
+    </div>
+
+    <div id="product">
+        <div class="product-image">
+            <img src="{{item.image.url}}" alt="img">
+        </div>
+        <div class="product-description">
+            <p class="item-name"><strong>NAME:</strong> {{item.name}}</p> <br>
+            <p class="item-price"><strong>ITEM'S PRICE:</strong> Kshs {{item.price}}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -22,7 +22,7 @@
 }
 /* i will use container 2 for the browse page  */
 .container2{
-    border: 2px solid greenyellow;
+    /* border: 2px solid greenyellow; */
     /* grid-template-columns: repeat(3, 30%); */
     
     grid-template-columns: repeat(5, 19.2%);

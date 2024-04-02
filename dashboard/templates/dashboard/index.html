@@ -11,6 +11,7 @@
 <div class="browser-items">
     <h2 class="header-two container-title">My Items</h2>
     <div class="container container2">
+    {% if items %}
         {% for item in items %}
             <a href="{% url 'item:detail' item.id %}" class="links item-link my-item">
                 <div class="each-item browser-each-item">
@@ -24,6 +25,10 @@
                 </div>
             </a>
         {% endfor %}
+    {% else %}
+    <p>Your Dashboard is Empty 😥</p> 
+    <a href="{% url 'item:new' %}">Start Selling</a>
+    {% endif %}
     </div>
 </div>
 

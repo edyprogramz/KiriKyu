@@ -19,10 +19,10 @@ class NewItemForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={
         "class": "input field"
     }))
-    quantity = forms.ImageField(widget=forms.FileInput(attrs={
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={
         "class": "input field"
     }))
-
+    
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
@@ -40,7 +40,10 @@ class EditItemForm(forms.ModelForm):
     image = forms.ImageField(widget=forms.FileInput(attrs={
         "class": "input field"
     }))
-    quantity = forms.ImageField(widget=forms.FileInput(attrs={
+    quantity = forms.IntegerField(widget=forms.NumberInput(attrs={
         "class": "input field"
     }))
+    
+    
+
     

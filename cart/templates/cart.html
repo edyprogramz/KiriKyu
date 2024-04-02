@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}CART{% endblock title %}
+
+{% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'cart/cart.css' %}">
+</head>
+
+<div id="cart-page">
+    <h2>CART</h2>
+    {% if cart_items %}
+        {% for cart_item in cart_items reversed %}
+        <div class="product">
+            <div class="product-image">
+                <img src="{{cart_item.item.image.url}}" alt="img">
+            </div>
+            <div class="product-description">
+                <div class="product-desc">
+                    <p class="item-name">{{cart_item.item.name}}</p>
+                    <div class="price-max-quantity">
+                        <p class="item-price">Kshs {{cart_item.item.price}}</p>
+                        <p class="max-quantity">max: {{cart_item.item.quantity}}</p>
+                    </div>
+                    <div class="product-quantity">
+                        <button class="minus-btn">-</button>
+                        <span contenteditable="true" class="quantity">1</span>
+                        <button class="plus-btn">+</button>
+                    </div>
+                </div>
+                <div class="product-checkout">
+                    <p class="total-amount"></p>
+                    {% if cart_item.item.id %}
+                        <form action="{% url 'cart:remove_from_cart' cart_item.item.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="Remove">
+                        </form>
+                    
+                    {% comment %} <a href="{% url 'cart:checkout' cart_item.item.id %}">CHECKOUT</a> {% endcomment %}
+                    <a href="{% url 'cart:checkout' cart_item.item.id %}?total_amount={{ total_amount }}&quantity={{ quantity }}" class="checkout-link">CHECKOUT</a>
+                    {% endif %}
+                    {% comment %} <button class="checkout-item"> --CHECKOUT--</button> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <p>Your Cart is Empty 😥</p> 
+    <a href="{% url 'item:items' %}">Find Items</a>
+    {% endif %}
+</div>
+
+<script>
+    // JavaScript code to handle functionality
+
+    // Select all items
+    const items = document.querySelectorAll('.product');
+
+    // Add event listeners to each item
+    items.forEach(item => {
+        const minusBtn = item.querySelector('.minus-btn');
+        const plusBtn = item.querySelector('.plus-btn');
+        const quantityElement = item.querySelector('.quantity');
+        const priceElement = item.querySelector('.item-price');
+        const totalAmountElement = item.querySelector('.total-amount');
+        const maxQuantityElement = item.querySelector('.max-quantity');
+
+        // Function to get the maximum quantity
+        function getMaxQuantity() {
+            const maxQuantityText = maxQuantityElement.textContent;
+            // Extract the maximum quantity number from the text
+            return parseInt(maxQuantityText.split(':')[1].trim());
+        }
+
+        // Function to calculate total amount
+        function updateTotalAmount() {
+            let quantity = parseInt(quantityElement.textContent);
+            let priceText = priceElement.textContent.trim(); // Remove leading/trailing spaces
+            let price = parseFloat(priceText.split(' ')[1]); // Extract numeric part of the price
+            let totalAmount = quantity * price;
+            totalAmountElement.textContent = 'Total: ksh. ' + (totalAmount.toFixed(2));
+
+            // Update total amount for the checkout link
+            let checkoutLink = item.querySelector('.checkout-link');
+            checkoutLink.href = checkoutLink.href.split('?')[0] + `?total_amount=${totalAmount}&quantity=${quantity}`;
+        }
+
+        // Function to truncate item name
+        function truncateItemName() {
+            const itemName = item.querySelector('.item-name');
+            let text = itemName.textContent.trim();
+            const maxLength = 50; // Maximum length for the product name
+            if (text.length > maxLength) {
+                itemName.textContent = text.substring(0, maxLength) + '...';
+            }
+        }
+
+        // Decrease quantity
+        minusBtn.addEventListener('click', () => {
+            let quantity = parseInt(quantityElement.textContent);
+            const maxQuantity = getMaxQuantity();
+            if (quantity > 1) {
+                quantity--;
+                quantityElement.textContent = quantity;
+                updateTotalAmount();
+            }
+        });
+
+        // Increase quantity
+        plusBtn.addEventListener('click', () => {
+            let quantity = parseInt(quantityElement.textContent);
+            const maxQuantity = getMaxQuantity();
+            if (quantity < maxQuantity) {
+                quantity++;
+                quantityElement.textContent = quantity;
+                updateTotalAmount();
+            }
+        });
+
+
+        // Update quantity when user leaves the span
+        quantityElement.addEventListener('blur', () => {
+            let quantity = parseInt(quantityElement.textContent);
+            const maxQuantity = getMaxQuantity();
+            if (isNaN(quantity) || quantity < 1) {
+                quantityElement.textContent = 1;
+            } else if (quantity > maxQuantity) {
+                quantityElement.textContent = maxQuantity;
+                alert('Maximum quantity reached!');
+            }
+            updateTotalAmount();
+        });
+
+        // Initial total amount calculation
+        updateTotalAmount();
+
+        // Truncate item name
+        truncateItemName();
+    });
+
+</script>
+{% endblock %}

@@ -17,14 +17,18 @@
     <div class="detail-item-desc">
         <h2 class="headers detail-item-name">{{item.name}}</h2>
         <p><strong>Description:</strong></br>{{item.description}}</p>
-        <p><strong>Price: </strong> </br>$ {{item.price}}</p></br>    
+        <p><strong>Price: </strong> </br> Kshs {{item.price}}</p></br>    
         <div class="btn-div">
             {% if request.user == item.created_by %}
                 <a href="{% url 'item:edit' item.id %}" class="teal-btn links">Edit</a>
                 <a href="{% url 'item:delete' item.id %}" class="gray-btn links">Delete</a>
             {% else %}
-                <a href="{% url 'conversation:new' item.id %}" class="teal-btn links">Contact Seller</a>
-                <a href="{% url 'item:delete' item.id %}" class="gray-btn links">Cart</a>
+                <a href="{% url 'conversation:new' item.id %}" class="teal-btn links">Contact Seller</a> <br><br>
+                <form action="{% url 'cart:add_to_cart' item.id %}" method="post">
+                    {% csrf_token %}
+                    {% comment %} <input type="number" name="quantity" value="1" min="1"> {% endcomment %}
+                    <button type="submit" class="gray-btn links">Add To Cart</button>
+                </form>
             {% endif %} 
         </div>    
     </div>
@@ -41,7 +45,7 @@
                     </div>
                     <div class="item-desc">
                         <h3>{{item.name}}</h3>
-                        <p><strong>Price:</strong>${{item.price}}</p>
+                        <p><strong>Price:</strong>Kshs {{item.price}}</p>
                     </div>
                 </div>
             </a>
