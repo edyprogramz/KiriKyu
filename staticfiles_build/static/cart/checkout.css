@@ -1,0 +1,18 @@
+#checkout-page{
+    border: 2px solid black;
+    width: fit-content;
+    padding: 30px;
+    margin: auto;
+}
+.header{
+    border-bottom: 2px solid black;
+    margin-bottom: 20px;
+}
+#payout{
+    /* border: 2px solid blue; */
+    margin-bottom: 10px;
+    padding: 20px;
+    box-shadow: -1px 1px 22px 7px rgba(0,0,0,0.75) inset;
+    -webkit-box-shadow: -1px 1px 22px 7px rgba(0,0,0,0.75) inset;
+    -moz-box-shadow: -1px 1px 22px 7px rgba(0,0,0,0.75) inset;
+}
