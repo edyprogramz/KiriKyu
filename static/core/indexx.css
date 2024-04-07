@@ -104,7 +104,7 @@
     height: 100%;
     width: 100%;
     border-radius: 50%;
-    object-fit: contain;
+    object-fit: cover;
 }
 .products .product-card .image-details{
     padding: 5px;

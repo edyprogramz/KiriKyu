@@ -70,7 +70,7 @@
                 {% if category.id == category_id %} active-category {% endif %}
                 <a href="{% url 'item:items' %}?query={{query}}&category={{category.id}}" class="product-card cat-card">
                     <div class="image">
-                        <img src="#" alt="img">
+                        <img src="{{category.image.url}}" alt="img">
                     </div>
                     <div class="image-details">
                         <span>{{category.name}}</span>
@@ -109,7 +109,7 @@
     <div id="you-may-like-section">
         <h1 class="section-title">YOU MAY LIKE</h1>
         <div class="products">
-            {% for item in items %}
+            {% for item in items reversed %}
                 <a href="{% url 'item:detail' item.id %}" class="product-card">
                     <div class="image">
                         <img src="{{item.image.url}}" alt="img">
