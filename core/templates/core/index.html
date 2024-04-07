@@ -62,6 +62,7 @@
         </div>
     </div>
 
+
     <!-- hot category  -->
     <div id="you-may-like-section">
         <h1 class="section-title">Hot Categories</h1>
@@ -89,14 +90,18 @@
             <a href="{% url 'item:items' %}">View More</a>
         </div>
         <div class="products">
-            {% for item in items %}
+            {% for item in latest_items %}
                 <a href="{% url 'item:detail' item.id %}" class="product-card">
                     <div class="image">
                         <img src="{{item.image.url}}" alt="img">
                     </div>
                     <div class="image-details">
                         <h1>{{item.name}}</h1>
-                        <p>Kshs {{item.price}}</p>
+                        {% if item.is_a_service %}
+                            <p><strong>Per Hour:</strong>  Kshs {{item.price}}</p>
+                        {% else %}
+                            <p><strong>Price:</strong>  Kshs {{item.price}}</p>
+                        {% endif %}
                     </div>
                 </a>
             {% endfor %}
@@ -116,7 +121,11 @@
                     </div>
                     <div class="image-details">
                         <h1>{{item.name}}</h1>
-                        <p>Kshs {{item.price}}</p>
+                        {% if item.is_a_service %}
+                            <p><strong>Per Hour:</strong>  Kshs {{item.price}}</p>
+                        {% else %}
+                            <p><strong>Price:</strong>  Kshs {{item.price}}</p>
+                        {% endif %}
                     </div>
                 </a>
             {% endfor %}        

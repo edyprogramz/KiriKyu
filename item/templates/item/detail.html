@@ -17,7 +17,11 @@
     <div class="detail-item-desc">
         <h2 class="headers detail-item-name">{{item.name}}</h2>
         <p><strong>Description:</strong></br>{{item.description}}</p>
-        <p><strong>Price: </strong> </br> Kshs {{item.price}}</p></br>    
+        {% if item.is_a_service %}
+            <p><strong>Per Hour: </strong> </br> Kshs {{item.price}}</p></br>    
+        {% else %}
+            <p><strong>Price: </strong> </br> Kshs {{item.price}}</p></br>    
+        {% endif %}
         <div class="btn-div">
             {% if request.user == item.created_by %}
                 <a href="{% url 'item:edit' item.id %}" class="teal-btn links">Edit</a>
@@ -49,11 +53,15 @@
                     </div>
                     <div class="item-desc">
                         <h3>{{item.name}}</h3>
-                        <p><strong>Price:</strong>Kshs {{item.price}}</p>
+                        {% if item.is_a_service %}
+                            <p><strong>Per Hour:</strong>  Kshs {{item.price}}</p>
+                        {% else %}
+                            <p><strong>Price:</strong>  Kshs {{item.price}}</p>
+                        {% endif %}
                     </div>
                 </div>
             </a>
         {% endfor %}
     </div>
 </div>
-{% endblock content %}
+{% endblock content %} 

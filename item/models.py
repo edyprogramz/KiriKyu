@@ -25,7 +25,8 @@ class Item(models.Model):
     created_by = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
 
-    cart = models.BooleanField(default=False)
+    is_a_service = models.BooleanField(default=False)
+
     quantity = models.IntegerField(default=1)
     
     def __str__(self):

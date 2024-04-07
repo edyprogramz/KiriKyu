@@ -2,6 +2,7 @@ from django import forms
 
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .models import PaymentOption
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={
@@ -15,9 +16,12 @@ class LoginForm(AuthenticationForm):
     }))
 
 class SignupForm(UserCreationForm):
+    payment_option = forms.ModelChoiceField(queryset=PaymentOption.objects.all(), empty_label=None)
+    account_details = forms.CharField(max_length=255, widget=forms.TextInput(attrs={"placeholder": "Enter account details", "class": "input-field"}))
+
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2', 'payment_option', 'account_details')
         
     username = forms.CharField(widget=forms.TextInput(attrs={
         "placeholder": "create a username",

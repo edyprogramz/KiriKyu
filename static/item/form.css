@@ -1,0 +1,20 @@
+#item-form{
+    border: 2px solid black;
+    padding: 10px 20px;
+    width: fit-content;
+    margin: auto;
+    /* text-align: center; */
+}
+#is_service{
+    display: flex;
+    align-items: baseline;
+    /* border: 2px solid black; */
+    margin: 10px, 20px, 10px;
+    padding: 20px;
+}
+#is_service h3{
+    flex: .6;
+}
+label{
+    margin-top: 20px;
+}

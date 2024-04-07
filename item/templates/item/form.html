@@ -5,11 +5,42 @@
 {% block content %}
 <head>
     {% load static %}
-    <link rel="stylesheet" href="item/form.css">
+    <link rel="stylesheet" href="{% static 'item/form.css' %}">
+    <link rel="stylesheet" href="core/registration.css">
 </head>
-<form action="{% url 'item:new' %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'item:new' %}" method="post" enctype="multipart/form-data" id="item-form">
     {% csrf_token %}
-    {{form.as_p}}
+    <label for="is_a_service" id="is_service">
+        <h3>Is this a service</h3>
+        <span>{{form.is_a_service}}</span>
+    </label>
+
+    <label for="category">
+        {% comment %} <h3>username</h3> {% endcomment %}
+        {{form.category}}
+    </label>
+    <label for="name">
+        <h3>name</h3>
+        {{form.name}}
+    </label>   
+    <label for="description">
+        <h3>description</h3>
+        {{form.description}}
+    </label>
+    <label for="price">
+        <h3>price / service per hour</h3>
+        {{form.price}}
+    </label>
+    <label for="image">
+        <h3>image</h3>
+        {{form.image}}
+    </label>
+    <label for="quantity">
+        <h3>quantity / hours in a day</h3>
+        {{form.quantity}}
+    </label>
+    <br><br>
+    {% comment %} {{form.as_p}} {% endcomment %}
     <button type="submit" class="gray-btn">submit</button>
 </form>
 {% endblock content %}

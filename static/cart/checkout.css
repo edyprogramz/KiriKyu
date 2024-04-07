@@ -16,3 +16,11 @@
     -webkit-box-shadow: -1px 1px 22px 7px rgba(0,0,0,0.75) inset;
     -moz-box-shadow: -1px 1px 22px 7px rgba(0,0,0,0.75) inset;
 }
+.product-image{
+    /* border: 2px solid black; */
+    height: 200px;
+}
+.product-image img{
+    height: 100%;
+    object-fit: contain;
+}

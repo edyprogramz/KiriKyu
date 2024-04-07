@@ -5,7 +5,7 @@ from .models import Item
 class NewItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('category', 'name', 'description', 'price', 'image', 'quantity')
+        fields = ('category', 'name', 'description', 'price', 'image', 'quantity', 'is_a_service')
         
     name = forms.CharField(widget=forms.TextInput(attrs={
         "class": "input field"
@@ -26,7 +26,7 @@ class NewItemForm(forms.ModelForm):
 class EditItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = ('category', 'name', 'description', 'price', 'image', 'quantity', 'is_sold')
+        fields = ('category', 'name', 'description', 'price', 'image', 'quantity', 'is_sold', 'is_a_service')
         
     name = forms.CharField(widget=forms.TextInput(attrs={
         "class": "input field"

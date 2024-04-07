@@ -21,6 +21,19 @@
             <h3>e-mail</h3>
             {{form.email}}
         </label>
+        <div id="add-payment-method">
+            ADD PAYMENT METHOD
+            <div id="payment">
+                <label for="payment_option">
+                    {{form.payment_option}}
+                </label>
+                <label for="account_details">
+                    {{form.account_details}}
+                </label>
+            </div>
+        </div>
+        
+        
         <label for="password1">
             <h3>password</h3>
             {{form.password1}}
@@ -32,16 +45,19 @@
         <br><br>
         <button type="submit" class="teal-btn">submit</button>
         <br>
-        {% if form.errors or form.non_field_errors %}
-            <div>
-                {% for field in form.errors %}
-                    {{field.errors}}
-                {% endfor %}
 
-                {{form.non_field_errors}}
-
+        {% if form.errors %}
+            <div id="form-errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
             </div>
         {% endif %}
+        
     </form>
 </div>
 {% endblock content %}

@@ -44,7 +44,11 @@
                         </div>
                         <div class="item-desc">
                             <h3>{{item.name}}</h3>
-                            <p><strong>Price:</strong>Kshs{{item.price}}</p>
+                            {% if item.is_a_service %}
+                                <p><strong>Per Hour:</strong>  Kshs {{item.price}}</p>
+                            {% else %}
+                                <p><strong>Price:</strong>  Kshs {{item.price}}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </a>
