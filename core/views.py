@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 
 from .forms import SignupForm
 from item.models import Item, Category
 from .models import PaymentMethod
+
 # Create your views here.
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:10]
@@ -41,3 +43,8 @@ def signup(request):
     return render(request, "core/signup.html", {
         "form": form
     })
+
+def logout_view(request):
+    logout(request)
+
+    return redirect('core:login')

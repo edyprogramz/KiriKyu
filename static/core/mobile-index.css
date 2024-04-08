@@ -1,0 +1,49 @@
+@media only screen and (max-width: 768px) {
+    .navbar{
+        /* border: 2px solid red; */
+        padding: 2px;
+    }
+    .logo{
+        font-size: 25px;
+    }
+    .navlink-container{
+        /* border: 2px solid greenyellow; */
+        /* flex: 1; */
+        text-align: center;
+        padding: 10px;
+        display: grid;
+        margin-left: 20px;
+        border-left: 1px solid gray;
+    }
+    .teal-btn{
+        background: transparent;
+        border: none;
+        outline: none;
+        color: black;
+        /* border: 1px solid teal;
+        padding: 2px;
+        background-color: var(--teal);
+        color: var(--white); */
+    
+    }
+    .gray-btn{
+        background: transparent;
+        border: none;
+        outline: none;
+        color: black;
+        /* border: 1px solid gray;
+        padding: 2px;
+        background-color: var(--gray);
+        color: var(--white); */
+    
+    
+    }
+    #mobile-nav-sec1{
+        border-bottom: 1px solid gray;
+        margin-bottom: 20px;
+    }
+    #mobile-nav-sec2{
+
+    }
+    
+}
